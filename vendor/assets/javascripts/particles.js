@@ -1498,8 +1498,8 @@ window.particlesJS = function(tag_id, params){
   if(canvas.length){
   
     /* set size canvas */
-    canvas.style.width = "100%";
-    canvas.style.height = "100%";    
+    canvas[0].style.width = "100%";
+    canvas[0].style.height = "100%";    
   }
 
 
