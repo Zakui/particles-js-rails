@@ -88,7 +88,7 @@ var pJS = function(tag_id, params){
       array: []
     },
     interactivity: {
-      detect_on: '.particles-js-canvas-el',
+      detect_on: 'canvas',
       events: {
         onhover: {
           enable: true,
@@ -184,9 +184,9 @@ var pJS = function(tag_id, params){
 
   /* ---------- pJS functions - canvas ------------ */
 
-  pJS.fn.canvasInit = function(){
-    pJS.canvas.ctx = pJS.canvas.el.getContext('2d');
-  };
+  // pJS.fn.canvasInit = function(){
+  //   pJS.canvas.ctx = pJS.canvas.el.getContext('2d');
+  // };
 
   pJS.fn.canvasSize = function(){
 
@@ -1374,7 +1374,7 @@ var pJS = function(tag_id, params){
 
     /* init canvas + particles */
     pJS.fn.retinaInit();
-    pJS.fn.canvasInit();
+    // pJS.fn.canvasInit();
     pJS.fn.canvasSize();
     pJS.fn.canvasPaint();
     pJS.fn.particlesCreate();
@@ -1489,9 +1489,24 @@ window.particlesJS = function(tag_id, params){
     tag_id = 'particles-js';
   }
 
+  /* pJS elements */
+  var pJS_tag = document.getElementById(tag_id),
+      pJS_canvas_class = 'particles-js-canvas-el',
+      canvas = pJS_tag.getElementsByClassName(pJS_canvas_class);
+
+  /* remove canvas if exists into the pJS target tag */
+  if(canvas.length){
+  
+    /* set size canvas */
+    canvas.style.width = "100%";
+    canvas.style.height = "100%";    
+  }
+
 
   /* launch particle.js */
-  pJSDom.push(new pJS(tag_id, params));
+  if(canvas != null){
+    pJSDom.push(new pJS(tag_id, params));
+  }
 
 };
 
